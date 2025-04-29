@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Secure Link Creator</title>
+        <meta name="description" content="Secure your links with a password." />
+        <meta
+            name="keywords"
+            content="secure link, password protected link, link security, encrypt link"
+        />
+        <meta name="author" content="github.com/magentapenguin" />
+        <meta name="color-scheme" content="light dark" />
+    </head>
+    <body>
+        <div id="create-secure-link" hidden>
+            <h1>Secure a Link</h1>
+            <form id="create-link-form">
+                <label for="link">Enter your link:</label>
+                <input
+                    type="url"
+                    id="link"
+                    placeholder="https://example.com"
+                    autocomplete="off"
+                    name="link"
+                    required
+                />
+                <label for="password">Enter a password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="correct horse battery staple"
+                    autocomplete="off"
+                    required
+                />
+                <button id="generate" type="submit">
+                    Generate Secure Link
+                </button>
+            </form>
+        </div>
+        <div id="secure-link-result" hidden>
+            <h2>Your Secure Link</h2>
+            <pre><code id="secure-link"></code></pre>
+            <div class="button-container">
+                <button id="copy-link">Copy Link</button>
+            </div>
+        </div>
+        <div id="secure-link-form" hidden>
+            <h2>Enter Password</h2>
+            <form id="unlock-form">
+                <label for="password-input">Password:</label>
+                <input
+                    type="password"
+                    id="password-input"
+                    name="password"
+                    placeholder="Enter password"
+                    autocomplete="off"
+                    required
+                />
+                <button id="submit-password" type="submit">
+                    Submit
+                </button>
+            </form>
+            <div id="unlock-result" hidden>
+                <h2>Unlocked Link</h2>
+                <a href="https://youtu.be/dQw4w9WgXcQ" id="unlocked-link" target="_blank" class="ph-no-capture">ERROR</a>
+                <div class="button-container">
+                    <button id="copy-unlocked-link">Copy Unlocked Link</button>
+                </div>
+            </div>
+        </div>
+        <script src="main.ts" type="module"></script>
+    </body>
+</html>

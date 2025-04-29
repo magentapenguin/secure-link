@@ -1,0 +1,176 @@
+*, *:before, *:after {
+    box-sizing: border-box !important;
+}
+[hidden] {
+    display: none !important;
+}
+.centered form {
+    margin: 0 auto;
+}
+form {
+    display: grid;
+    gap: 0.2em;
+    grid-template-columns: max-content 1fr;
+    max-width: 30em;
+    align-items: center;
+    column-gap: 0.5em;
+}
+form label {
+    height: min-content;
+}
+form:not(:has(:is(button, input)[type="reset"]))
+    :is(button, input)[type="submit"] {
+    grid-column: 1 / -1;
+}
+button {
+    cursor: pointer;
+    transition: scale 0.1s ease-in-out;
+}
+button:disabled,
+input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+input,
+button {
+    font: inherit;
+    border: 1px solid #bbb;
+    border-radius: 0.5em;
+    padding: 0.2em;
+    background-color: transparent;
+    box-shadow: 0 0 3px 0 #bbba;
+}
+button:hover {
+    background-color: #0001;
+}
+:focus-visible {
+    outline: 2px solid #0099ffa2;
+}
+:user-invalid {
+    border-color: #f00;
+}
+html {
+    background-color: #eee;
+    font-family: "Inter", "system-ui";
+    padding: 0.5em clamp(1em, 4vw, 4em);
+}
+pre {
+    background-color: #fff;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
+.button-container {
+    display: flex;
+    gap: 0.5em;
+}
+.button-container > button {
+    flex: 1;
+}
+.centered body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+dialog[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    max-width: 50vw;
+    margin: auto;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #bbb;
+    border-radius: 0.5em;
+    padding: 1em;
+    box-shadow: 0 0 3px 0 #bbba;
+    min-width: 30em
+}
+dialog .alert-title {
+    font-size: 1.5em;
+    margin: 0;
+    border-bottom: 1px solid #bbb;
+}
+dialog::backdrop {
+    background-color: #000000a2;
+}
+a {
+    color: #0099ff;
+    text-decoration: none;
+}
+a:hover {
+    color: #0077cc;
+    text-decoration: underline;
+}
+#unlocked-link {
+    margin-bottom: 0.5em;
+    display: block;
+    font-weight: bold;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #222;
+        color: #eee;
+    }
+    input,
+    button {
+        border-color: #444;
+        color: #eee;
+        box-shadow: 0 0 3px 0 #444a;
+    }
+    button:hover {
+        background-color: #333;
+    }
+    :focus-visible {
+        outline: 2px solid #0099ff;
+    }
+    :user-invalid {
+        border-color: #f22;
+    }
+    pre {
+        background-color: #111;
+        color: #eee;
+    }
+    dialog[open] {
+        background-color: #333;
+        color: #eee;
+        border: 1px solid #444;
+        box-shadow: 0 0 3px 0 #444a;
+    }
+    dialog .alert-title {
+        border-bottom-color: #444;
+    }
+    html.blue-dark {
+        background-color: #223;
+        color: #eee;
+    }
+    .blue-dark input,
+    .blue-dark button {
+        border-color: #445;
+        color: #eee;
+        box-shadow: 0 0 3px 0 #445a;
+    }
+    .blue-dark dialog[open] {
+        background-color: #334;
+        color: #eee;
+        border: 1px solid #445;
+        box-shadow: 0 0 3px 0 #445a;
+    }
+    .blue-dark dialog .alert-title {
+        border-bottom-color: #445;
+    }
+    .blue-dark button:hover {
+        background-color: #334;
+    }
+    .blue-dark pre {
+        background-color: #223;
+        color: #eee;
+    }
+
+}
