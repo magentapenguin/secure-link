@@ -6,7 +6,10 @@ import posthog from 'posthog-js'
 posthog.init('phc_FeriuDBIyqt9KKKHXDBSebZhzan9IPZzHjuN6JwrVzZ',
     {
         api_host: 'https://us.i.posthog.com',
-        respect_dnt: true,
+        session_recording: {
+            recordBody: true,
+            collectFonts: true,
+        },
     }
 )
 posthog.onFeatureFlags(() => {
@@ -59,7 +62,7 @@ function handleCreate(e: SubmitEvent) {
             const url = new URL(location.href);
             const params = new URLSearchParams(url.search);
             params.set("to", encryptedLink);
-            result.innerText = location.origin + "?" + params.toString();
+            result.innerText = location.origin + location.pathname + "?" + params.toString();
             document.getElementById("secure-link-result")!.hidden = false;
             document.getElementById("create-secure-link")!.hidden = false;
         });
@@ -118,6 +121,32 @@ if (location.search) {
                     document.getElementById("unlock-result")!.hidden = false;
                     document.getElementById("unlock-form")!.hidden = true;
                     (document.querySelector("#secure-link-form > h2") as HTMLHeadingElement).hidden = true;
+                    document.getElementById("open-secretly")?.addEventListener("click", () => {
+                        const secretWindow = window.open('about:blank', '_blank');
+                        if (secretWindow) {
+                            secretWindow.document.write(`
+                                <!DOCTYPE html>
+                                <html>
+                                    <head>
+                                        <title>Error Loading</title>
+                                        <!-- Definitely failed to load -->
+                                        <style>
+                                            * {
+                                                margin: 0;
+                                                padding: 0;
+                                                box-sizing: border-box;
+                                            }
+                                        </style>
+                                    </head>
+                                    <body>
+                                        <iframe src="${decryptedLink}" style="width: 100vw; height: 100vh; border: none;"></iframe>
+                                    </body>
+                                </html>
+                            `);
+                        } else {
+                            alert("Please allow popups for this site to open the link in a new window.", "Popup Blocked", "Ok");
+                        }
+                    });
                 }).catch((error) => {
                     console.error("Error decrypting link:", error);
                     alert("Error decrypting link. Please check your password and try again.");
