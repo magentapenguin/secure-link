@@ -10,8 +10,36 @@ posthog.init('phc_FeriuDBIyqt9KKKHXDBSebZhzan9IPZzHjuN6JwrVzZ',
             recordBody: true,
             collectFonts: true,
         },
+        opt_out_capturing_by_default: true,
     }
 )
+
+const cookieBanner = document.getElementById("cookie-consent") as HTMLElement;
+const acceptButton = document.getElementById("accept-cookies") as HTMLButtonElement;
+const rejectButton = document.getElementById("decline-cookies") as HTMLButtonElement;
+
+const isOptedIn = localStorage.getItem('posthog-opt-in');
+if (isOptedIn === 'true') {
+    posthog.opt_in_capturing();
+    cookieBanner.classList.add("hidden");
+} else if (isOptedIn === 'false') {
+    cookieBanner.classList.add("hidden");
+} else {
+    cookieBanner.classList.remove("hidden");
+}
+acceptButton.addEventListener("click", () => {
+    posthog.opt_in_capturing();
+    localStorage.setItem('posthog-opt-in', 'true');
+    cookieBanner.classList.add("hidden");
+});
+rejectButton.addEventListener("click", () => {
+    posthog.opt_out_capturing();
+    localStorage.setItem('posthog-opt-in', 'false');
+    cookieBanner.classList.add("hidden");
+});
+
+
+
 posthog.onFeatureFlags(() => {
     if (posthog.isFeatureEnabled('centered')) {
         document.documentElement.classList.add('centered');
