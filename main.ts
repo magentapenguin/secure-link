@@ -5,7 +5,7 @@ import posthog from 'posthog-js'
 
 posthog.init('phc_FeriuDBIyqt9KKKHXDBSebZhzan9IPZzHjuN6JwrVzZ',
     {
-        api_host: 'https://cat5.pythonanywhere.com',
+        api_host: 'https://cat5.pythonanywhere.com/backup/',
         ui_host: 'https://us.posthog.com',
         session_recording: {
             recordBody: true,
